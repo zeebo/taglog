@@ -10,8 +10,8 @@ type MultiLogger struct {
 	loggers []*log.Logger
 }
 
-func NewMultiLogger() *multiLogger {
-	return &multiLogger{
+func NewMultiLogger() *MultiLogger {
+	return &MultiLogger{
 		loggers: make([]*log.Logger, 0),
 	}
 }
@@ -50,6 +50,8 @@ func (m *MultiLogger) Output(level int, data string) {
 	}
 }
 
+// Printf calls m.Output to print to the logger.
+// Arguments are handled in the manner of fmt.Printf.
 func (m *MultiLogger) Printf(format string, v ...interface{}) {
 	m.Output(2, fmt.Sprintf(format, v...))
 }
@@ -67,7 +69,7 @@ func (m *MultiLogger) Println(v ...interface{}) {
 }
 
 func (m *MultiLogger) Fatal(v ...interface{}) {
-	std.Output(2, fmt.Sprint(v...))
+	m.Output(2, fmt.Sprint(v...))
 	os.Exit(1)
 }
 
