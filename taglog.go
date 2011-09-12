@@ -29,7 +29,6 @@ func (l *Logger) Enable(tags string) {
 
 func (l *Logger) Disable(tags string) {
 	for _, tag := range l.splitTags(tags) {
-		log.Print(tag)
 		l.SetTag(tag, false)
 	}
 }
@@ -107,11 +106,12 @@ func (l *Logger) Println(tag string, v ...interface{}) {
 //Helpers
 
 func (l *Logger) splitTags(tags string) []string {
-	splits := strings.Split(tags, ", ")
+	splits := strings.Split(tags, ",")
 	ret := make([]string, 0, len(splits))
 	for _, tag := range splits {
-		if len(tag) > 0 {
-			ret = append(ret, tag)
+		stripped := strings.TrimSpace(tag)
+		if len(stripped) > 0 {
+			ret = append(ret, stripped)
 		}
 	}
 	return ret

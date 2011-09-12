@@ -77,4 +77,13 @@ func TestMultitag(t *testing.T) {
 
 	log.Print("footag, bartag", "foo")
 	compare(t, buf, "foo\n")
+
+	log.Print("footag,bartag", "foo")
+	compare(t, buf, "foo\n")
+
+	log.Disable("footag,bartag")
+	log.Print("footag", "foo")
+	compare(t, buf, "")
+	log.Print("bartag", "foo")
+	compare(t, buf, "")
 }
