@@ -2,6 +2,7 @@ Taglog implementes tagged based logging for go.
 
 Example:
 
+```go
 	package main
 	
 	import (
@@ -26,6 +27,7 @@ Example:
 		logger.Print("debug", "I hope you know this wont print!")
 		logger.Print("feature", "But this will :)")
 	}
+```
 
 Coming soon is a way to enable/disable tags based on command line arguments in
 a standard way.
