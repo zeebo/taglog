@@ -21,12 +21,17 @@ func New(l *log.Logger) *Logger {
 
 //Tagging
 
-func (l *Logger) Enable(tag string) {
-	l.SetTag(tag, true)
+func (l *Logger) Enable(tags string) {
+	for _, tag := range l.splitTags(tags) {
+		l.SetTag(tag, true)
+	}
 }
 
-func (l *Logger) Disable(tag string) {
-	l.SetTag(tag, false)
+func (l *Logger) Disable(tags string) {
+	for _, tag := range l.splitTags(tags) {
+		log.Print(tag)
+		l.SetTag(tag, false)
+	}
 }
 
 func (l *Logger) SetTag(tag string, value bool) {
