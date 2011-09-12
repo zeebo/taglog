@@ -20,7 +20,7 @@ func main() {
 	logger.Enable("feature")
 
 	logger.Print("debug, other_tag", "Some statement") //prints
-	logger.Print("other_tag", "Won't work!") //no tags
+	logger.Print("other_tag", "Won't work!") //no tags match so no print
 	logger.Print("debug, feature", "Debugging some feature") //prints once
 
 	logger.Disable("debug")
